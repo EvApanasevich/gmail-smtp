@@ -23,12 +23,12 @@ app.post('/send-message', async function (req, res) {
     let transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-            user: smtp_login, //"mssg.from.portfolio@gmail.com",
-            pass: smtp_password //"apan872375",
+            user: smtp_login,
+            pass: smtp_password
         },
     });
 
-    let info = await transporter.sendMail({
+    await transporter.sendMail({
         from: "from-portfolio",
         to: "evapanasevich@yandex.ru",
         subject: "message from portfolio",
