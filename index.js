@@ -7,7 +7,10 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-const port = 3010
+
+const port = process.env.PORT || 3010
+const smtp_login = process.env.SMTP_LOGIN || "---"
+const smtp_password = process.env.SMTP_PASSWORD || "---"
 
 app.get('/', (req, res) => {
     res.send('Send messages server started!')
@@ -20,8 +23,8 @@ app.post('/send-message', async function (req, res) {
     let transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-            user: "mssg.from.portfolio@gmail.com",
-            pass: "apan872375",
+            user: smtp_login, //"mssg.from.portfolio@gmail.com",
+            pass: smtp_password //"apan872375",
         },
     });
 
